@@ -26,7 +26,7 @@ LEFT JOIN core.customers c
   ON c.id = b.customer_id
 LEFT JOIN core.geo_lookup d
   ON d.country_code = c.country_code
-WHERE (extract(year from b.purchase_ts) = 2022 and b.purchase_platform = 'website')
+WHERE (extract(year FROM b.purchase_ts) = 2022 AND b.purchase_platform = 'website')
   OR purchase_platform = 'mobile app'
 GROUP BY 1
 ORDER BY 2 DESC;
@@ -39,7 +39,7 @@ SELECT case when a.product_name = '27in"" 4k gaming monitor' THEN '27in 4K gamin
     SUM(CASE WHEN b.refund_ts is not null THEN 1 ELSE 0 END) AS refunds,
     AVG(CASE WHEN b.refund_ts is not null THEN 1 ELSE 0 END) AS refund_rate
 FROM core.orders a
-JOIN core.order_status b
+LEFT JOIN core.order_status b
 ON a.id = b.order_id
 GROUP BY 1
 ORDER BY 1;
@@ -47,36 +47,14 @@ ORDER BY 1;
 
 --Within each region, what is the most popular product?
 
-WITH order_count_cte AS (
-SELECT c.region, 
-  CASE WHEN a.product_name = '27in"" 4k gaming monitor' THEN '27in 4K gaming monitor' ELSE a.product_name END AS product_clean,
-  COUNT(DISTINCT a.id) AS order_count
-FROM core.orders a
-JOIN core.customers b
-ON a.customer_id = b.id
-JOIN core.geo_lookup c
-ON b.country_code = c.country_code
-GROUP BY 1,2),
-
-ranking_cte as(
-SELECT *,
- ROW_NUMBER() OVER(PARTITION BY region ORDER BY order_count DESC) AS ranking
-FROM order_count_CTE)
-
-SELECT *
-FROM ranking_cte 
-WHERE ranking = 1;
-
---OR--
-
 WITH order_count_CTE AS (
 SELECT c.region, 
   CASE WHEN a.product_name = '27in"" 4k gaming monitor' THEN '27in 4K gaming monitor' ELSE a.product_name END AS product_clean,
   COUNT(DISTINCT a.id) AS order_count
 FROM core.orders a
-JOIN core.customers b
+LEFT JOIN core.customers b
 ON a.customer_id = b.id
-JOIN core.geo_lookup c
+LEFT JOIN core.geo_lookup c
 ON b.country_code = c.country_code
 GROUP BY 1,2)
 SELECT *,
@@ -89,12 +67,12 @@ QUALIFY ROW_NUMBER() OVER(PARTITION BY region ORDER BY order_count DESC) = 1;
 --How does the time to make a purchase differ between loyalty customers vs. non-loyalty customers?
 
 SELECT a.loyalty_program,
-  round(avg(date_diff(b.purchase_ts,a.created_on, day)),1) as time_to_purchase_days,
-  round(avg(date_diff(b.purchase_ts,a.created_on, month)),1) as time_to_purchase_months
+  ROUND(AVG(DATE_DIFF(b.purchase_ts,a.created_on, day)),1) AS time_to_purchase_days,
+  ROUND(AVG(DATE_DIFF(b.purchase_ts,a.created_on, month)),1) AS time_to_purchase_months
 FROM core.customers a
-JOIN core.orders b
+LEFT JOIN core.orders b
 ON a.id = b.customer_id
-JOIN core.order_status c
+LEFT JOIN core.order_status c
 ON c.order_id = b.id
 GROUP BY 1;
-GROUP BY 1;
+
