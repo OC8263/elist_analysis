@@ -82,7 +82,8 @@ Premium electronics remain the primary revenue drivers, although recent sales tr
 
 ## Loyalty Program Insights
 
-<img width="1944" height="462" alt="image" src="https://github.com/user-attachments/assets/68bc60f4-77c2-49c3-9c54-cfd3022edd69" />
+<img width="1594" height="734" alt="image" src="https://github.com/user-attachments/assets/db73b5b9-4d01-44cd-ad93-feb75a0494c3" />
+
 
 	The loyalty program has become a major revenue driver over time, although lower member spending per transaction suggests opportunities to improve profitability.
 	
