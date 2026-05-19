@@ -48,7 +48,8 @@ This pattern suggests that the business is experiencing a volume-driven slowdown
 
 ## Product Trends
 
-<img width="1920" height="442" alt="image" src="https://github.com/user-attachments/assets/4335127e-673c-4c78-926e-38ed05eb4600" />
+<img width="1420" height="330" alt="image" src="https://github.com/user-attachments/assets/6c93fff7-0e9e-4f41-98b9-a9ca9ea5d2bd" />
+
 
 
 
@@ -82,7 +83,8 @@ Premium electronics remain the primary revenue drivers, although recent sales tr
 
 ## Loyalty Program Insights
 
-<img width="1594" height="734" alt="image" src="https://github.com/user-attachments/assets/db73b5b9-4d01-44cd-ad93-feb75a0494c3" />
+<img width="1416" height="650" alt="image" src="https://github.com/user-attachments/assets/e703a1d5-a2a5-4f9e-b6e8-05ece7097f03" />
+
 
 
 	The loyalty program has become a major revenue driver over time, although lower member spending per transaction suggests opportunities to improve profitability.
